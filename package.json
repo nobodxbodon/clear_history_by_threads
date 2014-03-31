@@ -1,0 +1,9 @@
+{
+  "name": "clear_history_by_threads",
+  "title": "clear_history_by_threads",
+  "id": "jid1-Fgr3VAYaXCdEkg",
+  "description": "Delete history records by threads",
+  "author": "Xuan Wu",
+  "license": "MPL 2.0",
+  "version": "0.1"
+}
