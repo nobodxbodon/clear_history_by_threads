@@ -5,8 +5,9 @@
   
 <menupopup id="hit_contextmenu">
         <menuitem id="hit_delete" label="Delete"
-        	oncommand="com.wuxuan.fromwheretowhere.main.deleteSelected(event)"/>
+        	oncommand="com.wuxuan.fromwheretowhere.main.externalCall(com.wuxuan.fromwheretowhere.deleteHistory.delete)"/>
       </menupopup>
 
 
+<script src="deleteHistory.js" />
 </overlay>  
