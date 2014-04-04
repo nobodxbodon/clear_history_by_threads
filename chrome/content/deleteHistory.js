@@ -16,15 +16,15 @@ com.wuxuan.fromwheretowhere.deleteHistory=function(){
         main.treeView.toggleOpenState(Number(i));
       }
       pub.deleteAll(sel[i]);
-      /*main.treeView.visibleData.splice(i,1);
-      main.treeView.treeBox.rowCountChanged(0,main.treeView.visibleData.length);*/
+      main.treeView.visibleData.splice(i,1);
+      main.treeView.treeBox.rowCountChanged(i+1,-1);
     }
     
   };
   
   pub.deleteAll = function(node){
     console.log("removeVisitsByTimeframe: "+node.label+" "+node.visit_date);
-    //pub.browserHistory.removeVisitsByTimeframe(node.visit_date,node.visit_date);
+    pub.browserHistory.removeVisitsByTimeframe(node.visit_date,node.visit_date);
     var ch = node.children;
     if(ch==null)
       return;
