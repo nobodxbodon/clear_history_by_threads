@@ -7,8 +7,13 @@ com.wuxuan.fromwheretowhere.deleteHistory=function(){
                      
   pub.delete=function(main){
     var sel = main.getCurrentSelectedwithIndex();
-    
+    var idx = [];
     for(var i in sel){
+      idx.push(i);
+    }
+    idx.sort();
+    for(var id=idx.length-1;id>=0;id--){
+      var i=idx[id];
       console.log(JSON.stringify(sel[i]));
       console.log("to delete:"+i+" open?"+sel[i].isFolded);
       //fold it if not
@@ -19,7 +24,7 @@ com.wuxuan.fromwheretowhere.deleteHistory=function(){
       main.treeView.visibleData.splice(i,1);
       main.treeView.treeBox.rowCountChanged(i+1,-1);
     }
-    
+    main.treeView.selection.clearSelection();
   };
   
   pub.deleteAll = function(node){
