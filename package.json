@@ -1,9 +1,9 @@
 {
   "name": "clear_history_by_threads",
-  "title": "clear_history_by_threads",
+  "title": "Clear History by Threads",
   "id": "jid1-Fgr3VAYaXCdEkg",
-  "description": "Delete history records by threads",
+  "description": "Delete history records by threads, depending on addon History in Threads",
   "author": "Xuan Wu",
   "license": "MPL 2.0",
-  "version": "0.1"
+  "version": "0.2"
 }
