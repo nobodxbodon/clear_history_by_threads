@@ -4,9 +4,24 @@ com.wuxuan.fromwheretowhere.deleteHistory=function(){
   pub.browserHistory = Components.classes["@mozilla.org/browser/nav-history-service;1"]
                      .getService(Components.interfaces.nsIBrowserHistory);
                      
-                     
+  pub.getCurrentSelectedwithIndex = function(main){
+    var selectCount = main.treeView.selection.count;
+    var selectedIndex = main.UIutils.getAllSelectedIndex(main.treeView);
+    //verify 
+    if(selectCount!=selectedIndex.length){
+      console.log("Error when getting selected rows");
+    }
+    var selected = {};
+    for(var i in selectedIndex){
+      var node = main.treeView.visibleData[selectedIndex[i]];
+      
+      selected[selectedIndex[i]]=main.utils.cloneObject(node);
+    }
+    return selected;
+  };
+
   pub.delete=function(main){
-    var sel = main.getCurrentSelectedwithIndex();
+    var sel = pub.getCurrentSelectedwithIndex(main);
     var idx = [];
     for(var i in sel){
       idx.push(i);
@@ -27,7 +42,7 @@ com.wuxuan.fromwheretowhere.deleteHistory=function(){
       //console.log(sel[i]+" go up from "+sel[i].level);
       if(sel[i].level>0){
         var p = main.treeView.visibleData[i-1];
-        console.log(JSON.stringify(p));
+        //console.log(JSON.stringify(p));
         if(p.level==sel[i].level-1 && p.children.length==1){
           p.isContainer=false;
           //p.isFolded=false;
