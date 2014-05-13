@@ -1,1 +1,4 @@
 content clear_history_by_threads chrome/content/
+
+locale clear_history_by_threads en-US chrome/locale/en-US/
+locale clear_history_by_threads zh-CN chrome/locale/zh-CN/
