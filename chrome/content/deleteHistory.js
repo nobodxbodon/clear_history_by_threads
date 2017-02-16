@@ -1,9 +1,13 @@
+
 com.wuxuan.fromwheretowhere.deleteHistory=function(){
   var pub={};
   
-  pub.browserHistory = Components.classes["@mozilla.org/browser/nav-history-service;1"]
-                     .getService(Components.interfaces.nsIBrowserHistory);
-                     
+  Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
+  XPCOMUtils.defineLazyModuleGetter(this, "Task",
+                                    "resource://gre/modules/Task.jsm");
+  XPCOMUtils.defineLazyModuleGetter(this, "PlacesUtils",
+                                    "resource://gre/modules/PlacesUtils.jsm");
+
   pub.getCurrentSelectedwithIndex = function(main){
     var selectCount = main.treeView.selection.count;
     var selectedIndex = main.UIutils.getAllSelectedIndex(main.treeView);
@@ -54,7 +58,14 @@ com.wuxuan.fromwheretowhere.deleteHistory=function(){
   
   pub.deleteAll = function(node){
     //console.log("removeVisitsByTimeframe: "+node.label+" "+node.visit_date);
-    pub.browserHistory.removeVisitsByTimeframe(node.visit_date,node.visit_date);
+    Task.async(function* () {
+      let filter = {
+        beginDate: new Date(node.visit_date/1000),
+        endDate: new Date(node.visit_date/1000 + 1)
+      };
+      yield PlacesUtils.history.removeVisitsByFilter(filter);
+      }
+    )();
     var ch = node.children;
     if(ch==null)
       return;
